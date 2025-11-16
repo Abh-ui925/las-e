@@ -2,6 +2,7 @@ import os
 import sys
 from datetime import datetime
 from getpass import getpass
+from flask import request
 
 from flask import (
     Flask, render_template, request, redirect, url_for,
@@ -116,6 +117,14 @@ def book_detail(book_id):
 def serve_ebook(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+
+@app.route('/admin/login-history')
+@admin_required
+def login_history():
+    logs = LoginHistory.query.order_by(LoginHistory.timestamp.desc()).all()
+    return render_template('login_history.html', logs=logs)
+
+
 # ----- AUTH ROUTES -----
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -146,6 +155,13 @@ def login():
             flash('Invalid credentials.', 'error')
             return redirect(url_for('login'))
         login_user(user)
+        # --- Login logging ---
+    log = LoginHistory(
+        user_id=user.id,
+        ip_address=request.remote_addr
+    )
+    db.session.add(log)
+    db.session.commit()
         flash('Logged in successfully.', 'success')
         return redirect(url_for('index'))
     return render_template('login.html')
