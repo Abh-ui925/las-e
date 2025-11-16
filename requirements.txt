@@ -1,6 +1,6 @@
 Flask==2.3.2
 Flask-SQLAlchemy==3.0.3
-Flask-Login==0.7.0
+Flask-Login==0.6.3
 Werkzeug==2.3.7
 gunicorn==21.2.0
 psycopg2-binary==2.9.7  # only if you plan to use Postgres on Render (optional)
