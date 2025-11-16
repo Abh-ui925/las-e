@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<article class="book">
+  <h2>{{ book.title }}</h2>
+  <p>Author: {{ book.author or 'Unknown' }} | Year: {{ book.year or '—' }}</p>
+  <p>Uploaded: {{ book.uploaded_on.strftime('%Y-%m-%d %H:%M') }}</p>
+
+  <div class="reader">
+    <h3>Read here</h3>
+    <iframe src="{{ url_for('serve_ebook', filename=book.filename) }}" width="100%" height="600px"></iframe>
+  </div>
+
+  {% if current_user.is_authenticated and current_user.role == 'admin' %}
+  <form method="post" action="{{ url_for('delete_book', book_id=book.id) }}" onsubmit="return confirm('Delete this book?');">
+    <button type="submit">Delete (Admin)</button>
+  </form>
+  {% endif %}
+</article>
+{% endblock %}

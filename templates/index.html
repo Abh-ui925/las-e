@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="search">
+  <form method="get" action="{{ url_for('index') }}">
+    <input type="search" name="q" placeholder="Search by title or author..." value="{{ q }}">
+    <button type="submit">Search</button>
+  </form>
+</section>
+
+<section class="results">
+  {% if books %}
+    <ul class="book-list">
+      {% for b in books %}
+        <li>
+          <h3><a href="{{ url_for('book_detail', book_id=b.id) }}">{{ b.title }}</a></h3>
+          <p>Author: {{ b.author or 'Unknown' }} | Year: {{ b.year or '—' }}</p>
+          <small>Uploaded: {{ b.uploaded_on.strftime('%Y-%m-%d') }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No books found.</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+header { background:#2c3e50; color:white; padding:12px 20px; display:flex; justify-content:space-between; align-items:center; }
+header a { color: white; text-decoration:none; }
+main { padding:20px; }
+.search form { margin-bottom: 12px; }
+.book-list { list-style:none; padding:0; }
+.book-list li { padding:10px 0; border-bottom:1px solid #eee; }
+.flash .msg { padding:8px; margin-bottom:8px; border-radius:4px; }
+.flash .msg.error { background:#f8d7da; color:#842029; }
+.flash .msg.success { background:#d1e7dd; color:#0f5132; }
+footer { padding:8px 20px; background:#f4f4f4; font-size:12px; }

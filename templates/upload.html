@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Admin — Upload E-Book (PDF)</h2>
+<form method="post" enctype="multipart/form-data">
+  <label>Title: <input type="text" name="title" required></label><br>
+  <label>Author: <input type="text" name="author"></label><br>
+  <label>Year: <input type="text" name="year"></label><br>
+  <label>PDF file: <input type="file" name="file" accept="application/pdf" required></label><br>
+  <button type="submit">Upload</button>
+</form>
+{% endblock %}
