@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <title>LAS-E — E-Book Library</title>
-  <a href="{{ url_for('login_history') }}">Login History</a>
 
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
@@ -16,7 +15,7 @@
         <a href="{{ url_for('logout') }}">Logout</a>
         {% if current_user.role == 'admin' %}
           | <a href="{{ url_for('upload_book') }}">Admin Upload</a>
-      | <a href="{{ url_for('login_history') }}">Login History</a>
+          | <a href="{{ url_for('login_history') }}">Login History</a>
         {% endif %}
       {% else %}
         <a href="{{ url_for('login') }}">Login</a> |
